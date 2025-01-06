@@ -1,4 +1,4 @@
-package Twelve_tone;
+package new_package;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
