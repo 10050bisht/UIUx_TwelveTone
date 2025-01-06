@@ -1,97 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-27T06:30:34 CST" name="Default suite" finished-at="2024-12-27T06:31:34 CST" duration-ms="59572">
+  <suite started-at="2025-01-06T03:13:22 CST" name="Default suite" finished-at="2025-01-06T03:14:21 CST" duration-ms="59718">
     <groups>
     </groups>
-    <test started-at="2024-12-27T06:30:34 CST" name="Default test" finished-at="2024-12-27T06:31:34 CST" duration-ms="59572">
-      <class name="Twelve_tone.login">
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:34 CST" name="setup" finished-at="2024-12-27T06:30:42 CST" duration-ms="8117" status="PASS">
+    <test started-at="2025-01-06T03:13:22 CST" name="Default test" finished-at="2025-01-06T03:14:21 CST" duration-ms="59718">
+      <class name="new_twelvetone.Billing_expected_Result">
+        <test-method is-config="true" signature="setup()[pri:0, instance:new_twelvetone.Billing_expected_Result@6be968ce]" started-at="2025-01-06T03:13:22 CST" name="setup" finished-at="2025-01-06T03:13:38 CST" duration-ms="16559" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Login_with_Blanks_fields()[pri:1, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:42 CST" name="Login_with_Blanks_fields" finished-at="2024-12-27T06:30:43 CST" duration-ms="799" status="PASS">
+        <test-method signature="saveAllClientDetailsToExcel()[pri:0, instance:new_twelvetone.Billing_expected_Result@6be968ce]" started-at="2025-01-06T03:13:38 CST" name="saveAllClientDetailsToExcel" finished-at="2025-01-06T03:14:21 CST" duration-ms="43121" status="FAIL">
+          <exception class="java.io.FileNotFoundException">
+            <message>
+              <![CDATA[Billing_reports\CombinedBillingReport.xlsx (The system cannot find the path specified)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.io.FileNotFoundException: Billing_reports\CombinedBillingReport.xlsx (The system cannot find the path specified)
+at java.base/java.io.FileOutputStream.open0(Native Method)
+at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
+at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
+at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:118)
+at new_twelvetone.Billing_expected_Result.saveAllClientDetailsToExcel(Billing_expected_Result.java:359)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.io.FileNotFoundException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Login_with_Blanks_fields -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:43 CST" name="cleanUp" finished-at="2024-12-27T06:30:43 CST" duration-ms="1" status="PASS">
+        </test-method> <!-- saveAllClientDetailsToExcel -->
+        <test-method is-config="true" signature="close_browae()[pri:0, instance:new_twelvetone.Billing_expected_Result@6be968ce]" started-at="2025-01-06T03:14:21 CST" name="close_browae" finished-at="2025-01-06T03:14:21 CST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:43 CST" name="setup" finished-at="2024-12-27T06:30:50 CST" duration-ms="6936" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="Blank_email_valid_Password()[pri:2, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:50 CST" name="Blank_email_valid_Password" finished-at="2024-12-27T06:30:51 CST" duration-ms="861" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Blank_email_valid_Password -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:51 CST" name="cleanUp" finished-at="2024-12-27T06:30:51 CST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:51 CST" name="setup" finished-at="2024-12-27T06:30:58 CST" duration-ms="7033" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="Blank_email_Invalid_Password()[pri:3, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:58 CST" name="Blank_email_Invalid_Password" finished-at="2024-12-27T06:30:59 CST" duration-ms="821" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Blank_email_Invalid_Password -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:59 CST" name="cleanUp" finished-at="2024-12-27T06:30:59 CST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:30:59 CST" name="setup" finished-at="2024-12-27T06:31:07 CST" duration-ms="8010" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="Valid_email_Blank_Password()[pri:4, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:07 CST" name="Valid_email_Blank_Password" finished-at="2024-12-27T06:31:08 CST" duration-ms="1004" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Valid_email_Blank_Password -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:08 CST" name="cleanUp" finished-at="2024-12-27T06:31:08 CST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:08 CST" name="setup" finished-at="2024-12-27T06:31:15 CST" duration-ms="6867" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="Invalid_email_Blank_Password()[pri:5, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:15 CST" name="Invalid_email_Blank_Password" finished-at="2024-12-27T06:31:16 CST" duration-ms="863" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Invalid_email_Blank_Password -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:16 CST" name="cleanUp" finished-at="2024-12-27T06:31:16 CST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:16 CST" name="setup" finished-at="2024-12-27T06:31:22 CST" duration-ms="6267" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="Invalid_Email_and_password()[pri:6, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:22 CST" name="Invalid_Email_and_password" finished-at="2024-12-27T06:31:24 CST" duration-ms="1916" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Invalid_Email_and_password -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:24 CST" name="cleanUp" finished-at="2024-12-27T06:31:24 CST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:24 CST" name="setup" finished-at="2024-12-27T06:31:31 CST" duration-ms="7124" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="valid_login()[pri:7, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:31 CST" name="valid_login" finished-at="2024-12-27T06:31:34 CST" duration-ms="2901" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- valid_login -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:Twelve_tone.login@4082ba93]" started-at="2024-12-27T06:31:34 CST" name="cleanUp" finished-at="2024-12-27T06:31:34 CST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUp -->
-      </class> <!-- Twelve_tone.login -->
+        </test-method> <!-- close_browae -->
+      </class> <!-- new_twelvetone.Billing_expected_Result -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

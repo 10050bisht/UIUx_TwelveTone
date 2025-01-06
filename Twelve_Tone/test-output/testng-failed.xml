@@ -3,17 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Twelve_tone.login$LoginTests">
+      <class name="new_twelvetone.Billing_expected_Result">
         <methods>
-          <include name="Login_with_Blanks_fields"/>
-          <include name="Blank_email_valid_Password"/>
-          <include name="Invalid_email_Blank_Password"/>
-          <include name="Invalid_Email_and_password"/>
-          <include name="Valid_email_Blank_Password"/>
-          <include name="valid_login"/>
-          <include name="Blank_email_Invalid_Password"/>
+          <include name="setup"/>
+          <include name="saveAllClientDetailsToExcel"/>
+          <include name="close_browae"/>
         </methods>
-      </class> <!-- Twelve_tone.login$LoginTests -->
+      </class> <!-- new_twelvetone.Billing_expected_Result -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

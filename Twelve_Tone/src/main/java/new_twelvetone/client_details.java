@@ -1,4 +1,4 @@
-package new_package;
+package new_twelvetone;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+// import org.testng.annotations.AfterMethod;
+// import org.testng.annotations.BeforeMethod;
+// import org.testng.annotations.Test;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
@@ -20,13 +20,12 @@ public class client_details {
 
 	WebDriver driver;
 
-	@BeforeMethod
+	// @BeforeMethod
 	private void setup() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.get("https://stage.schedulehub.io/");
 		driver.manage().window().maximize();
-
 
 		WebElement email = driver.findElement(By.name("email"));
 		email.clear();
@@ -44,8 +43,7 @@ public class client_details {
 
 	}
 
-
-	@Test
+	// @Test
 	private void all_client() {
 		// Initialize total client count and active student count
 		int totalClientCount = 0;
@@ -76,7 +74,8 @@ public class client_details {
 
 		while (true) {
 			// Find all rows in the table
-			List<WebElement> rows = driver.findElements(By.xpath("//tr[contains(@class, 'MuiTableRow-root css-2ygh3t')]"));
+			List<WebElement> rows = driver
+					.findElements(By.xpath("//tr[contains(@class, 'MuiTableRow-root css-2ygh3t')]"));
 
 			// Process each row
 			for (WebElement row : rows) {
@@ -99,20 +98,15 @@ public class client_details {
 					String leadStatus = cells.get(3).getText();
 					if ("Lead".equalsIgnoreCase(leadStatus)) {
 						activeClientCount++;
-					}
-					else if("SCH trial".equalsIgnoreCase(leadStatus)) {
+					} else if ("SCH trial".equalsIgnoreCase(leadStatus)) {
 						leadClientCount++;
-					}
-					else if("MSD trial".equalsIgnoreCase(leadStatus)) {
+					} else if ("MSD trial".equalsIgnoreCase(leadStatus)) {
 						leadClientCount++;
-					}
-					else if("ATT Trial".equalsIgnoreCase(leadStatus)) {
+					} else if ("ATT Trial".equalsIgnoreCase(leadStatus)) {
 						leadClientCount++;
-					}
-					else if("Active".equalsIgnoreCase(leadStatus)) {
+					} else if ("Active".equalsIgnoreCase(leadStatus)) {
 						leadClientCount++;
-					}
-					else if("Dropped".equalsIgnoreCase(leadStatus)) {
+					} else if ("Dropped".equalsIgnoreCase(leadStatus)) {
 						leadClientCount++;
 					}
 				}
@@ -121,7 +115,8 @@ public class client_details {
 			totalClientCount += rows.size();
 
 			// Check if the "Next Page" button is enabled/exists
-			List<WebElement> nextButtonElements = driver.findElements(By.xpath("//button[@aria-label='Go to next page' and @type='button']"));
+			List<WebElement> nextButtonElements = driver
+					.findElements(By.xpath("//button[@aria-label='Go to next page' and @type='button']"));
 			if (nextButtonElements.isEmpty() || !nextButtonElements.get(0).isEnabled()) {
 				// Exit loop if the "Next Page" button is not present or not enabled
 				break;
@@ -132,7 +127,8 @@ public class client_details {
 			new Actions(driver).scrollToElement(nextButton).perform();
 			nextButton.click();
 
-			// Wait for the page to load (adjust the wait as per your application's behavior)
+			// Wait for the page to load (adjust the wait as per your application's
+			// behavior)
 			try {
 				Thread.sleep(2000); // Use WebDriverWait in real scenarios instead of Thread.sleep
 			} catch (InterruptedException e) {
@@ -140,34 +136,34 @@ public class client_details {
 			}
 		}
 
-		  // Write status counts to the Excel sheet
-	    Row totalRow = sheet.createRow(rowIndex++);
-	    totalRow.createCell(0).setCellValue("Total Clients:");
-	    totalRow.createCell(1).setCellValue(totalClientCount);
+		// Write status counts to the Excel sheet
+		Row totalRow = sheet.createRow(rowIndex++);
+		totalRow.createCell(0).setCellValue("Total Clients:");
+		totalRow.createCell(1).setCellValue(totalClientCount);
 
-	    Row activeClientRow = sheet.createRow(rowIndex++);
-	    activeClientRow.createCell(0).setCellValue("Active Clients:");
-	    activeClientRow.createCell(1).setCellValue(activeClientCount);
+		Row activeClientRow = sheet.createRow(rowIndex++);
+		activeClientRow.createCell(0).setCellValue("Active Clients:");
+		activeClientRow.createCell(1).setCellValue(activeClientCount);
 
-	    Row leadClientRow = sheet.createRow(rowIndex++);
-	    leadClientRow.createCell(0).setCellValue("Lead Clients:");
-	    leadClientRow.createCell(1).setCellValue(leadClientCount);
+		Row leadClientRow = sheet.createRow(rowIndex++);
+		leadClientRow.createCell(0).setCellValue("Lead Clients:");
+		leadClientRow.createCell(1).setCellValue(leadClientCount);
 
-	    Row schTrialClientRow = sheet.createRow(rowIndex++);
-	    schTrialClientRow.createCell(0).setCellValue("SCHTrial Clients:");
-	    schTrialClientRow.createCell(1).setCellValue(SchTrialCount);
+		Row schTrialClientRow = sheet.createRow(rowIndex++);
+		schTrialClientRow.createCell(0).setCellValue("SCHTrial Clients:");
+		schTrialClientRow.createCell(1).setCellValue(SchTrialCount);
 
-	    Row msdTrialClientRow = sheet.createRow(rowIndex++);
-	    msdTrialClientRow.createCell(0).setCellValue("MSDTrial Clients:");
-	    msdTrialClientRow.createCell(1).setCellValue(MSDTrialCount);
+		Row msdTrialClientRow = sheet.createRow(rowIndex++);
+		msdTrialClientRow.createCell(0).setCellValue("MSDTrial Clients:");
+		msdTrialClientRow.createCell(1).setCellValue(MSDTrialCount);
 
-	    Row attTrialClientRow = sheet.createRow(rowIndex++);
-	    attTrialClientRow.createCell(0).setCellValue("AttTrial Clients:");
-	    attTrialClientRow.createCell(1).setCellValue(AttTrialCount);
+		Row attTrialClientRow = sheet.createRow(rowIndex++);
+		attTrialClientRow.createCell(0).setCellValue("AttTrial Clients:");
+		attTrialClientRow.createCell(1).setCellValue(AttTrialCount);
 
-	    Row droppedClientRow = sheet.createRow(rowIndex++);
-	    droppedClientRow.createCell(0).setCellValue("Dropped Clients:");
-	    droppedClientRow.createCell(1).setCellValue(DroppedClientCount);
+		Row droppedClientRow = sheet.createRow(rowIndex++);
+		droppedClientRow.createCell(0).setCellValue("Dropped Clients:");
+		droppedClientRow.createCell(1).setCellValue(DroppedClientCount);
 
 		// Save Excel file
 		try (FileOutputStream fileOut = new FileOutputStream("ClientDetails.xlsx")) {
@@ -191,21 +187,12 @@ public class client_details {
 		System.out.println("ATT_trial Clients Count: " + AttTrialCount);
 		System.out.println("Dropped Clients Count: " + DroppedClientCount);
 
-
-
-
 	}
 
-
-
-
-
-
-	@AfterMethod
+	// @AfterMethod
 	private void close_browae() {
-			driver.close();
+		driver.close();
 
-	}    
-
+	}
 
 }
