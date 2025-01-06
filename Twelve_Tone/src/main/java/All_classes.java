@@ -18,32 +18,35 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class All_classes {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://stage.schedulehub.io/");
+	public static void main(String[] args) throws InterruptedException, IOException {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://dev.schedulehub.io/");
 
-        driver.manage().window().maximize();
+		driver.manage().window().maximize();
 
-        driver.findElement(By.name("email")).sendKeys("test@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("123456");
-        driver.findElement(By.className("_submitBtn_yye06_97")).click();
+		driver.findElement(By.name("email")).sendKeys("test@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.className("_submitBtn_yye06_97")).click();
 
-        Thread.sleep(4000);
 
-        WebElement Schedule_menu = driver.findElement(By.partialLinkText("Schedule"));
-        Schedule_menu.click();
+		Thread.sleep(4000);
 
-        WebElement lessonSchedule = driver.findElement(By.xpath("//span[text()='Lesson Schedule']"));
-        lessonSchedule.click();
+		WebElement Schedule_menu = driver.findElement(By.partialLinkText("Schedule"));
+		Schedule_menu.click();
 
-        Thread.sleep(4000);
+		WebElement lessonSchedule = driver.findElement(By.xpath("//span[text()='Lesson Schedule']"));
+		lessonSchedule.click();
+
+		Thread.sleep(4000);
+
+        Thread.sleep(3000);
 
         // Map to store cumulative counts by class type
         Map<String, int[]> classTypeSummaryMap = new HashMap<>();
 
-        // Iterate through the next 7 days
-        for (int i = 1; i <= 7; i++) {
+        // Iterate through the next 30 days
+        for (int i = 1; i <= 30; i++) {
             // Open calendar and select the specific day
             WebElement calendar = driver.findElement(By.xpath("//button[contains(@class, 'MuiIconButton-root')]"));
             calendar.click();
@@ -56,28 +59,16 @@ public class All_classes {
             // Find all class elements for the day
             List<WebElement> classElements = driver.findElements(By.xpath("//div[contains(@class, 'classItemHeader')]//p[contains(@class, 'classTitle')]"));
 
-            System.out.println("------------------------- Day " + i + " ----------------------------");
             for (WebElement classElement : classElements) {
                 String classText = classElement.getText();
-                // Skip if classText is blank
-                if (classText.trim().isEmpty()) {
-                    continue;
-                }
-
                 String classType = classText.split(" - ")[0]; // Extract class type (e.g., GL60, PL60)
                 WebElement classContainer = classElement.findElement(By.xpath("./ancestor::div[contains(@class, '_card_')]"));
 
-//              Total Class Students
-                List<WebElement> allStudentElements = classContainer.findElements(By.xpath(".//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
+                // Locate trial, non-trial, and makeup students within this class container
+                List<WebElement> trialStudentElements = classContainer.findElements(By.cssSelector("div.MuiStack-root._backgroundPurple_wbyfb_451"));
+                List<WebElement> allStudentElements = classContainer.findElements(By.xpath(".//div[contains(@class, '_hoverGrayBg_wbyfb_466')]/p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
+                List<WebElement> makeupStudentElements = classContainer.findElements(By.className("_backgroundMakeup_wbyfb_455"));
 
-                // Trial Class Students
-                List<WebElement> trialStudentElements = classContainer.findElements(By.xpath(".//div[contains(@class, '_backgroundPurple_wbyfb_451')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
-
-                // Makeup Class Students
-                List<WebElement> makeupStudentElements = classContainer.findElements(By.xpath(".//div[contains(@class, '_backgroundMakeup_wbyfb_455')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
-                
-                
-               
                 int trialCount = trialStudentElements.size();
                 int allCount = allStudentElements.size();
                 int makeupCount = makeupStudentElements.size();
@@ -87,13 +78,6 @@ public class All_classes {
                 classTypeSummaryMap.get(classType)[0] += allCount; // Index 0: Non-trial students
                 classTypeSummaryMap.get(classType)[1] += trialCount;    // Index 1: Trial students
                 classTypeSummaryMap.get(classType)[2] += makeupCount;   // Index 2: Makeup students
-
-                // Print class info for each day
-                System.out.println("Class Type: " + classType);
-                System.out.println("Total Students: " + allCount);
-                System.out.println("Trial Students: " + trialCount);
-                System.out.println("Makeup Students: " + makeupCount);
-                System.out.println("-------------------------------------------------");
             }
         }
 
@@ -128,7 +112,7 @@ public class All_classes {
         }
 
         // Write the Excel file to disk
-        try (FileOutputStream fileOut = new FileOutputStream(new File("weeklyClass_Summary.xlsx"))) {
+        try (FileOutputStream fileOut = new FileOutputStream(new File("DevClass_Summary.xlsx"))) {
             workbook.write(fileOut);
         } catch (IOException e) {
             e.printStackTrace();
