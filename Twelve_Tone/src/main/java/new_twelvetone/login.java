@@ -6,13 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import dev.failsafe.internal.util.Assert;
-
-// import org.testng.Assert;
-// import org.testng.annotations.AfterMethod;
-// import org.testng.annotations.BeforeMethod;
-// import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+ import org.testng.annotations.BeforeMethod;
+ import org.testng.annotations.Test;
 import java.time.Duration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -20,7 +17,7 @@ public class login { // Reuse the code and commented code is same code
 
 	WebDriver driver;
 
-	// @BeforeMethod
+	 @BeforeMethod
 	private void setup() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
@@ -57,22 +54,20 @@ public class login { // Reuse the code and commented code is same code
 		return toastElement.getText().trim();
 	}
 
-	// @Test(priority = 1) // check login with blank email and blank password
+	 @Test(priority = 1) // check login with blank email and blank password
 	public void Login_with_Blanks_fields() {
 		performLogin("", ""); // Call helper method with blank values
 		String actualMessage = getToasterMessage();
 		String expectedMessage = "Email Required";
-		// Assert.assertEquals(actualMessage, expectedMessage, "The toast message does
-		// not match the expected value.");
+		 Assert.assertEquals(actualMessage, expectedMessage, "The toast message does not match the expected value.");
 	}
 
-	// @Test(priority = 2) // check login with blank email and valid password
+	 @Test(priority = 2) // check login with blank email and valid password
 	public void Blank_email_valid_Password() {
 		performLogin("", "123456"); // Call helper method with blank email and valid password
 		String actualMessage = getToasterMessage();
 		String expectedMessage = "Email Required";
-		// Assert.assertEquals(actualMessage, expectedMessage, "The toast message does
-		// not match the expected value.");
+		 Assert.assertEquals(actualMessage, expectedMessage, "The toast message does not match the expected value.");
 	}
 
 	// @Test(priority = 3) // Check login with blank email and invalid password

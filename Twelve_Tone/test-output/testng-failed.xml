@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="new_twelvetone.Billing_expected_Result">
+      <class name="billing.Compare_lesson_Schedule">
         <methods>
+          <include name="cleanUp"/>
           <include name="setup"/>
-          <include name="saveAllClientDetailsToExcel"/>
-          <include name="close_browae"/>
+          <include name="Schedule_Lesson"/>
         </methods>
-      </class> <!-- new_twelvetone.Billing_expected_Result -->
+      </class> <!-- billing.Compare_lesson_Schedule -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
