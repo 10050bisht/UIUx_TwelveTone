@@ -1,23 +1,21 @@
 package billing;
 
-import java.awt.CardLayout;
-import java.util.Calendar;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+// import org.testng.annotations.AfterMethod;
+// import org.testng.annotations.BeforeMethod;
+// import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Compare_lesson_Schedule {
 	WebDriver driver;
 
-	@BeforeMethod
+	// @BeforeMethod
 	private void setup() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
@@ -38,8 +36,6 @@ public class Compare_lesson_Schedule {
 
 		Thread.sleep(5000);
 
-
-
 		WebElement Schedule = driver.findElement(By.xpath("//a[contains(text(), 'Schedule')]"));
 		Schedule.click();
 
@@ -48,88 +44,81 @@ public class Compare_lesson_Schedule {
 
 	}
 
-
-
-
-
-
-
-
-
-	@Test
+	// @Test
 	private void Schedule_Lesson() throws InterruptedException {
 
 		Thread.sleep(3000);
-	// Locate and click the calendar icon
-			WebElement calendarIcon = driver.findElement(By.xpath("//button[contains(@aria-label, 'Choose date')]"));
+		// Locate and click the calendar icon
+		WebElement calendarIcon = driver.findElement(By.xpath("//button[contains(@aria-label, 'Choose date')]"));
+		calendarIcon.click();
+
+		// Find all date elements in the date picker
+		List<WebElement> dateElements = driver
+				.findElements(By.xpath("//button[contains(@class, 'MuiPickersDay-root')]"));
+
+		// Loop through all the dates from 1 to the end of the month
+		for (int i = 1; i <= dateElements.size(); i++) {
+			// Locate the specific date element dynamically based on its text
+			WebElement dateElement = driver
+					.findElement(By.xpath("//button[contains(@class, 'MuiPickersDay-root') and text()='" + i + "']"));
+
+			// Click the date
+			System.out.println("Selecting date:------------------------ " + dateElement.getText());
+			dateElement.click();
+
+			// Wait to simulate user interaction (optional)
+			Thread.sleep(5000);
+
 			calendarIcon.click();
 
-			// Find all date elements in the date picker
-			List<WebElement> dateElements = driver.findElements(By.xpath("//button[contains(@class, 'MuiPickersDay-root')]"));
+			// Locate all class elements with 'PL60' in their title
+			List<WebElement> classElements = driver.findElements(By.xpath("//p[contains(text(), 'PL60')]"));
 
-			// Loop through all the dates from 1 to the end of the month
-			for (int i = 1; i <= dateElements.size(); i++) {
-			    // Locate the specific date element dynamically based on its text
-			    WebElement dateElement = driver.findElement(By.xpath("//button[contains(@class, 'MuiPickersDay-root') and text()='" + i + "']"));
-			    
-			    // Click the date
-			    System.out.println("Selecting date:------------------------ " + dateElement.getText());
-			    dateElement.click();
-			    
-			    // Wait to simulate user interaction (optional)
-			    Thread.sleep(4000);
+			// Iterate over each PL60 class element
+			for (WebElement classElement : classElements) {
+				String className = classElement.getText();
+				System.out.println("Class: " + className);
 
-			        calendarIcon.click();
+				// Locate the parent container of the current class
+				WebElement classContainer = classElement
+						.findElement(By.xpath("./ancestor::div[contains(@class, '_card_')]"));
 
-		// Locate all class elements with 'PL60' in their title
-		List<WebElement> classElements = driver.findElements(By.xpath("//p[contains(text(), 'PL60')]"));
+				// Find all students within the current class container
+				List<WebElement> allStudents = classContainer.findElements(
+						By.xpath(".//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
+				List<WebElement> trialStudents = classContainer.findElements(By.xpath(
+						".//div[contains(@class, '_backgroundPurple_wbyfb_451')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
+				List<WebElement> makeupStudents = classContainer.findElements(By.xpath(
+						".//div[contains(@class, '_backgroundMakeup_wbyfb_455')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
 
+				// Print each student's details
+				for (WebElement student : allStudents) {
+					System.out.println("Student: " + student.getText());
+				}
 
+				for (WebElement trialStudent : trialStudents) {
+					System.out.println("Trial Student: " + trialStudent.getText());
+				}
 
-		// Iterate over each PL60 class element
-		for (WebElement classElement : classElements) {
-			String className = classElement.getText();
-			System.out.println("Class: " + className);
+				for (WebElement makeupStudent : makeupStudents) {
+					System.out.println("Makeup Student: " + makeupStudent.getText());
+				}
 
-			// Locate the parent container of the current class
-			WebElement classContainer = classElement.findElement(By.xpath("./ancestor::div[contains(@class, '_card_')]"));
-
-			// Find all students within the current class container
-			List<WebElement> allStudents = classContainer.findElements(By.xpath(".//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
-			List<WebElement> trialStudents = classContainer.findElements(By.xpath(".//div[contains(@class, '_backgroundPurple_wbyfb_451')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
-			List<WebElement> makeupStudents = classContainer.findElements(By.xpath(".//div[contains(@class, '_backgroundMakeup_wbyfb_455')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
-
-
-			// Print each student's details
-			for (WebElement student : allStudents) {
-				System.out.println("Student: " + student.getText());
+				// Print the total number of students in the current class
+				System.out.println("Total students in this class: " + allStudents.size());
+				System.out.println("Total trial students in this class: " + trialStudents.size());
+				System.out.println("Total makeup students in this class: " + makeupStudents.size());
+				System.out.println("-------------------------------------------------");
 			}
+		}
 
-			for (WebElement trialStudent : trialStudents) {
-				System.out.println("Trial Student: " + trialStudent.getText());
-			}
-
-			for (WebElement makeupStudent : makeupStudents) {
-				System.out.println("Makeup Student: " + makeupStudent.getText());
-			}
-
-			// Print the total number of students in the current class
-			System.out.println("Total students in this class: " + allStudents.size());
-			System.out.println("Total trial students in this class: " + trialStudents.size());
-			System.out.println("Total makeup students in this class: " + makeupStudents.size());
-			System.out.println("-------------------------------------------------");
-		}}
 	}
 
-
-
-
-
-	@AfterMethod
+	// @AfterMethod
 	public void cleanUp() {
 		// driver.manage().deleteAllCookies();
 		//// driver.navigate().refresh();
-		// driver.close();
+		driver.close();
 	}
 
 }
