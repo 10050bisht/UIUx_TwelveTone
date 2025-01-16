@@ -6,13 +6,17 @@ package billing;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.chrome.ChromeDriver;
 	import io.github.bonigarcia.wdm.WebDriverManager;
-	import org.testng.annotations.*;
 	import org.apache.poi.ss.usermodel.*;
 	import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 	import java.io.FileOutputStream;
 	import java.io.IOException;
 	import java.util.List;
+
+	
+	 import org.testng.annotations.AfterMethod;
+	 import org.testng.annotations.BeforeMethod;
+	 import org.testng.annotations.Test;
 
 	public class SingleLessonCountTestNG {
 	    WebDriver driver;
@@ -25,7 +29,7 @@ package billing;
 	        WebDriverManager.chromedriver().setup();
 	        driver = new ChromeDriver();
 	        driver.manage().window().maximize();
-	        driver.get("https://stage.schedulehub.io/");
+	        driver.get("https://stage.schedulehub.io");
 	    }
 
 	    @Test

@@ -18,13 +18,13 @@ public class demo {
     public static void main(String[] args) throws InterruptedException, IOException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
-        driver.get("https://stage.schedulehub.io/");
+        driver.get("https://dev.schedulehub.io/");
 
         driver.manage().window().maximize();
 
         driver.findElement(By.name("email")).sendKeys("test@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("123456");
-        driver.findElement(By.className("_submitBtn_yye06_97")).click();
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.className("_submitBtn_1e7ib_96")).click();
 
         Thread.sleep(4000);
 
@@ -73,8 +73,10 @@ public class demo {
                 for (WebElement classelemnt : classElements) {
                     // Total Class Students
                     List<WebElement> Student = classelemnt.findElements(By.xpath(".//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
+                    for(WebElement student1: Student) {
                     totalStudentCount += Student.size();
-
+                    System.out.println(" day : " +  day + " -- "+ student1.getText());
+                    
                     // Trial Class Students
                     List<WebElement> trialElements = classelemnt.findElements(By.xpath(".//div[contains(@class, '_backgroundPurple_wbyfb_451')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
                     trialStudentCount += trialElements.size();
@@ -82,8 +84,7 @@ public class demo {
                     // Makeup Class Students
                     List<WebElement> makeupElements = classelemnt.findElements(By.xpath(".//div[contains(@class, '_backgroundMakeup_wbyfb_455')]//p[contains(@class, '_listItem_wbyfb_289') and contains(text(), 'yrs')]"));
                     makeupStudentCount += makeupElements.size();
-                }
-
+                }}
                 int actualStudentCount = totalStudentCount - (trialStudentCount + makeupStudentCount);
 
                 // Add row to Excel for the current day
