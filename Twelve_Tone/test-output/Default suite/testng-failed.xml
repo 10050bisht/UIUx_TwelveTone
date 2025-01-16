@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="billing.Compare_lesson_Schedule">
+      <class name="billing.SingleLessonCountTestNG">
         <methods>
-          <include name="cleanUp"/>
+          <include name="teardown"/>
+          <include name="calculateSingleLessonCounts"/>
           <include name="setup"/>
-          <include name="Schedule_Lesson"/>
         </methods>
-      </class> <!-- billing.Compare_lesson_Schedule -->
+      </class> <!-- billing.SingleLessonCountTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

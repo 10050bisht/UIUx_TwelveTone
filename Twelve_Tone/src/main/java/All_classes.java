@@ -27,7 +27,7 @@ public class All_classes {
 
 		driver.findElement(By.name("email")).sendKeys("test@gmail.com");
 		driver.findElement(By.name("password")).sendKeys("123456");
-		driver.findElement(By.className("_submitBtn_yye06_97")).click();
+		driver.findElement(By.className("_submitBtn_1e7ib_96")).click();
 
 
 		Thread.sleep(4000);
