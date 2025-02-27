@@ -25,15 +25,11 @@ package billing;
 	    int rowNum = 0;
 
 	    @BeforeMethod
-	    public void setup() {
+	    public void setup() throws InterruptedException {
 	        WebDriverManager.chromedriver().setup();
 	        driver = new ChromeDriver();
 	        driver.manage().window().maximize();
-	        driver.get("https://stage.schedulehub.io");
-	    }
-
-	    @Test
-	    public void calculateSingleLessonCounts() throws InterruptedException, IOException {
+	        driver.get("https://stage.schedulehub.io"); 
 	        // Login
 	        driver.findElement(By.name("email")).sendKeys("test@gmail.com");
 	        driver.findElement(By.name("password")).sendKeys("123456");
@@ -44,6 +40,11 @@ package billing;
 	        driver.findElement(By.partialLinkText("Schedule")).click();
 	        driver.findElement(By.xpath("//span[text()='Lesson Schedule']")).click();
 	        Thread.sleep(4000);
+	    }
+
+	    @Test
+	    public void calculateSingleLessonCounts() throws InterruptedException, IOException {
+	       
 
 	        // Initialize Excel workbook and sheet
 	        workbook = new XSSFWorkbook();
